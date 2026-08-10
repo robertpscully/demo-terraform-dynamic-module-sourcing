@@ -27,6 +27,7 @@ jobs:
           fail-on-diff: true
           recursive: true
           recursive-path: modules
+          args: "--show-providers"  # Add this to help with dynamic content
 
       - name: Generate terraform docs for hcpt workspace config
         uses: terraform-docs/gh-actions@v1.4.1
