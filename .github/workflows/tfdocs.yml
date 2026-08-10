@@ -1,0 +1,39 @@
+name: Terraform Docs
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/tfdocs.yml'
+      - 'README.md'
+
+jobs:
+  tfdocs:
+    name: Generate Terraform docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' ? github.event.pull_request.head.ref : github.ref }}
+
+      - name: Generate terraform docs for dynamic module demo
+        uses: terraform-docs/gh-actions@v1.4.1
+        with:
+          working-dir: terraform/dynamic_modules_sources
+          output-file: README.md
+          output-method: inject
+          fail-on-diff: true
+          recursive: true
+          recursive-path: modules
+
+      - name: Generate terraform docs for hcpt workspace config
+        uses: terraform-docs/gh-actions@v1.4.1
+        with:
+          working-dir: terraform/hcpt
+          output-file: README.md
+          output-method: inject
+          fail-on-diff: true
