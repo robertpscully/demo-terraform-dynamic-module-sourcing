@@ -35,3 +35,6 @@ jobs:
           output-file: README.md
           output-method: inject
           fail-on-diff: true
+          recursive: true
+          recursive-path: modules
+          args: "--show-providers"  # Add this to help with dynamic content
