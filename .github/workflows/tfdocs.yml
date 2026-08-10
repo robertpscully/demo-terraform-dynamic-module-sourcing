@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Generate terraform docs for dynamic module demo
         uses: terraform-docs/gh-actions@v1.4.1
