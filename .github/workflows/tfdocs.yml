@@ -2,40 +2,58 @@ name: Terraform Docs
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    paths:
-      - 'terraform/**'
-      - '.github/workflows/tfdocs.yml'
-      - 'README.md'
+    name: Terraform Docs
 
-jobs:
-  tfdocs:
-    name: Generate Terraform docs
-    runs-on: ubuntu-latest
+    on:
+      push:
+        branches: [ main ]
+      pull_request:
+        paths:
+          - 'terraform/**'
+          - '.github/workflows/tfdocs.yml'
+          - 'README.md'
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7.0.1
+    permissions:
+      contents: write
 
-      - name: Generate terraform docs for dynamic module demo
-        uses: terraform-docs/gh-actions@v1.4.1
-        with:
-          working-dir: terraform/dynamic_modules_sources
-          output-file: README.md
-          output-method: inject
-          fail-on-diff: true
-          recursive: true
-          recursive-path: modules
-          args: "--show-providers"  # Add this to help with dynamic content
+    jobs:
+      tfdocs-pr:
+        if: github.event_name == 'pull_request'
+        name: Generate Terraform docs (PR)
+        runs-on: ubuntu-latest
 
-      - name: Generate terraform docs for hcpt workspace config
-        uses: terraform-docs/gh-actions@v1.4.1
-        with:
-          working-dir: terraform/hcpt
-          output-file: README.md
-          output-method: inject
-          fail-on-diff: true
-          recursive: true
-          recursive-path: modules
-          args: "--show-providers"  # Add this to help with dynamic content
+        steps:
+          - name: Checkout PR branch
+            uses: actions/checkout@v3
+            with:
+              ref: ${{ github.event.pull_request.head.ref }}
+              persist-credentials: true
+
+          - name: Generate and push terraform docs
+            uses: terraform-docs/gh-actions@v1.4.1
+            with:
+              working-dir: terraform/dynamic_modules_sources,terraform/hcpt
+              output-file: README.md
+              output-method: inject
+              git-push: 'true'
+              recursive: true
+              recursive-path: modules
+
+      tfdocs-main:
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        name: Generate Terraform docs (main)
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout main
+            uses: actions/checkout@v3
+
+          - name: Generate and push terraform docs to main
+            uses: terraform-docs/gh-actions@v1.4.1
+            with:
+              working-dir: terraform/dynamic_modules_sources,terraform/hcpt
+              output-file: README.md
+              output-method: inject
+              git-push: 'true'
+              recursive: true
+              recursive-path: modules
