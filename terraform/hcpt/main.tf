@@ -15,12 +15,6 @@ terraform {
 
 provider "tfe" {}
 
-resource time_static "now" {
-  triggers = {
-    run_once = "yes"
-  }
-}
-
 resource "tfe_project" "dynamic_module_source_project" {
   name  = "Dynamic Module Sourcing Demo"
   description = "A project containing demo resources to showcase dynamic module sourcing in HCPT Terraform."
@@ -42,7 +36,7 @@ resource "tfe_workspace" "dynamic_module_source_workspace" {
 
 resource "tfe_variable" "module_version" {
   key          = "module_version"
-  value        = "0.2"
+  value        = "v0.2"
   category     = "terraform"
   workspace_id = tfe_workspace.dynamic_module_source_workspace.id
   sensitive    = false
