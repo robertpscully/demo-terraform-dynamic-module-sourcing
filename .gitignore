@@ -2,8 +2,9 @@
 .terraform/
 
 # Terraform state files
-*.tfstate
+*.tfstate*
 *.tfstate.backup
+*.tfstate.*
 
 # Crash log files
 crash.log
@@ -27,6 +28,12 @@ terraform.tfvars.json
 
 # Ignore any local environment or override files
 *.tfvars.local
+
+# Allow tfvars files in dynamic_module_sourcing (demo needs them committed)
+!terraform/dynamic_module_sourcing/**/*.tfvars
+!terraform/dynamic_module_sourcing/**/*.tfvars.json
+!terraform/dynamic_module_sourcing/**/*.auto.tfvars
+!terraform/dynamic_module_sourcing/**/*.tfvars.local
 
 # Provider dependency directories
 .terraform/plugins/
