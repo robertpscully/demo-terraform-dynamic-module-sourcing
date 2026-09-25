@@ -1,16 +1,8 @@
-terraform {
-  required_version = ">= 1.5"
 
-  required_providers {
-    tfe = {
-      source  = "hashicorp/tfe"
-      version = "~> 0.53"
-    }
-  }
 
-  backend "local" {
-    path = "terraform.tfstate"
-  }
+resource "tfe_project" "module_source_demo" {
+  name         = "Module Source Demo"
+  organization = var.hcpt_org
 }
 
 provider "tfe" {}
@@ -32,8 +24,8 @@ resource "tfe_workspace" "dynamic_module_source_workspace" {
   organization = var.hcpt_org
   project_id  = tfe_project.dynamic_module_source_project.id
   vcs_repo {
-    identifier = var.hcpt_vcs_repo_identifier
-    branch     = var.hcpt_vcs_branch
+    identifier                 = var.hcpt_vcs_repo_identifier
+    branch                     = var.hcpt_vcs_branch
     github_app_installation_id = var.github_app_installation_id
   }
 
