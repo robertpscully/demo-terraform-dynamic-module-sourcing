@@ -5,15 +5,24 @@ resource "tfe_project" "module_source_demo" {
   organization = var.hcpt_org
 }
 
-resource "tfe_workspace" "dynamic_module_source_workspace" {
-  name                 = "dynamic-module-sourcing-demo"
-  organization         = var.hcpt_org
-  project_id           = tfe_project.module_source_demo.id
-  file_triggers_enabled = true
-  trigger_prefixes     = ["terraform/dynamic_modules_sources"]
-  speculative_enabled  = true
-  allow_destroy_plan   = true
+provider "tfe" {}
 
+resource time_static "now" {
+  triggers = {
+    run_once = "yes"
+  }
+}
+
+resource "tfe_project" "dynamic_module_source_project" {
+  name  = "Dynamic Module Sourcing Demo"
+  description = "A project containing demo resources to showcase dynamic module sourcing in HCPT Terraform."
+  organization = var.hcpt_org
+}
+
+resource "tfe_workspace" "dynamic_module_source_workspace" {
+  name         = "dynamic-module-sourcing-demo"
+  organization = var.hcpt_org
+  project_id  = tfe_project.dynamic_module_source_project.id
   vcs_repo {
     identifier                 = var.hcpt_vcs_repo_identifier
     branch                     = var.hcpt_vcs_branch

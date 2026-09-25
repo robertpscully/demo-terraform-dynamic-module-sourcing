@@ -1,0 +1,227 @@
+{
+  "version": 4,
+  "terraform_version": "1.15.7",
+  "serial": 20,
+  "lineage": "d84dcbe1-83e1-ffd5-5968-f9de4398dba9",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "tfe_project",
+      "name": "dynamic_module_source_project",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tfe\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "auto_destroy_activity_duration": null,
+            "description": "A project containing demo resources to showcase dynamic module sourcing in HCPT Terraform.",
+            "id": "prj-Cx7yiKiXs2hRdvUE",
+            "ignore_additional_tags": null,
+            "name": "Dynamic Module Sourcing Demo",
+            "organization": "scullycorp",
+            "tags": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "hostname": "app.terraform.io",
+            "id": "prj-Cx7yiKiXs2hRdvUE"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "tfe_project",
+      "name": "module_source_demo",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tfe\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "auto_destroy_activity_duration": null,
+            "description": "",
+            "id": "prj-1MybzzWbSVqo5YKR",
+            "ignore_additional_tags": null,
+            "name": "Module Source Demo",
+            "organization": "scullycorp",
+            "tags": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "hostname": "app.terraform.io",
+            "id": "prj-1MybzzWbSVqo5YKR"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "tfe_variable",
+      "name": "module_version",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tfe\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "category": "terraform",
+            "description": "",
+            "hcl": false,
+            "id": "var-Ufjpr75XchSDDjzG",
+            "key": "module_version",
+            "readable_value": "0.2",
+            "sensitive": false,
+            "value": "0.2",
+            "value_wo": null,
+            "value_wo_version": null,
+            "variable_set_id": null,
+            "workspace_id": "ws-sV6oAymQeAVF7V3E"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "value"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "value_wo"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "configurable_id": "ws-sV6oAymQeAVF7V3E",
+            "hostname": "app.terraform.io",
+            "id": "var-Ufjpr75XchSDDjzG"
+          },
+          "dependencies": [
+            "tfe_project.dynamic_module_source_project",
+            "tfe_workspace.dynamic_module_source_workspace"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "tfe_workspace",
+      "name": "dynamic_module_source_workspace",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tfe\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "agent_pool_id": "",
+            "allow_destroy_plan": true,
+            "assessments_enabled": false,
+            "auto_apply": false,
+            "auto_apply_run_trigger": false,
+            "auto_destroy_activity_duration": "",
+            "auto_destroy_at": "",
+            "description": "",
+            "effective_tags": {},
+            "execution_mode": "remote",
+            "file_triggers_enabled": true,
+            "force_delete": false,
+            "global_remote_state": false,
+            "html_url": "https://app.terraform.io/app/scullycorp/workspaces/dynamic-module-sourcing-demo",
+            "hyok_enabled": false,
+            "id": "ws-sV6oAymQeAVF7V3E",
+            "ignore_additional_tag_names": null,
+            "ignore_additional_tags": null,
+            "inherits_project_auto_destroy": true,
+            "name": "dynamic-module-sourcing-demo",
+            "operations": true,
+            "organization": "scullycorp",
+            "project_id": "prj-1MybzzWbSVqo5YKR",
+            "queue_all_runs": true,
+            "remote_state_consumer_ids": [],
+            "resource_count": 0,
+            "source_name": "",
+            "source_url": "",
+            "speculative_enabled": true,
+            "ssh_key_id": "",
+            "structured_run_output_enabled": true,
+            "tag_names": [],
+            "tags": {},
+            "terraform_version": "1.15.8",
+            "trigger_patterns": [],
+            "trigger_prefixes": [],
+            "vcs_repo": [
+              {
+                "branch": "main",
+                "github_app_installation_id": "ghain-xPzD5oD6cXcnrUPy",
+                "identifier": "robertpscully/demo-terraform-dynamic-module-sourcing",
+                "ingress_submodules": false,
+                "oauth_token_id": "",
+                "tags_regex": ""
+              }
+            ],
+            "working_directory": "terraform/dynamic_modules_sources"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "vcs_repo"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": 0,
+                  "type": "number"
+                }
+              },
+              {
+                "type": "get_attr",
+                "value": "github_app_installation_id"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "hostname": "app.terraform.io",
+            "id": "ws-sV6oAymQeAVF7V3E"
+          },
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "tfe_project.dynamic_module_source_project",
+            "tfe_project.module_source_demo"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "time_static",
+      "name": "now",
+      "provider": "provider[\"registry.terraform.io/hashicorp/time\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "day": 16,
+            "hour": 23,
+            "id": "2026-08-16T23:40:37Z",
+            "minute": 40,
+            "month": 8,
+            "rfc3339": "2026-08-16T23:40:37Z",
+            "second": 37,
+            "triggers": {
+              "run_once": "yes"
+            },
+            "unix": 1786923637,
+            "year": 2026
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
