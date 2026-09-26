@@ -5,7 +5,7 @@ A demo Terraform repository showing dynamic module sourcing that can be executed
 ## Repository layout
 
 - `terraform/dynamic_modules_sources/` - root config for the dynamic module sourcing example.
-- `terraform/dynamic_modules_sources/modules/` - local module versions used by the example.
+- `terraform/modules/` - local module versions used by the example.
 - `terraform/hcpt/` - Terraform code that manages HCP Terraform resources that will execute the demo code in a VCS workflow
 
 ## Usage
