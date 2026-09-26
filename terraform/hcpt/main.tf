@@ -8,9 +8,9 @@ terraform {
     }
   }
 
-  backend "local" {
-    path = "terraform.tfstate"
-  }
+resource "tfe_project" "module_source_demo" {
+  name         = "Module Source Demo"
+  organization = var.hcpt_org
 }
 
 provider "tfe" {}

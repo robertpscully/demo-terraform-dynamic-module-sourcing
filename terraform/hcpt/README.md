@@ -1,20 +1,39 @@
 # HCP Terraform Demo for Dynamic Module Sourcing
 
-A companion HCP Terraform workflow that can be deployed into any HCP Terraform organization to run the [dynamic module sourcing demo](../dynamic_modules_sourcing) as a VCS-driven workspace.
+A companion HCP Terraform workflow that can be deployed into any HCP Terraform organization to deploy the [dynamic module sourcing demo](../dynamic_modules_sources).
 
-It creates a project, a VCS-connected workspace pointed at this repo, and seeds the `module_version` Terraform variable on that workspace. Using a VCS configuration lets HCP Terraform read the demo code directly from GitHub on each run, which keeps the demo root module free of any `backend` block.
+## Resources Created
 
+ - An HCP Terraform Project
+ - An HCP Terraform Workspace in this Project
+   - Optionally: A VCS-connection block for this Workspace, which is linked to the demo code contained in this repository
+ - An HCP Terraform Workspace Variable named `module_version`
+   - This is a terraform variable with a non-sensitive value
+   - The default value for this variable is `v0.1`
+   
 ## Prerequisites and Assumptions
 
-Explaining HCP Terraform itself is out of scope here.
+Explaining the operations of HCP Terraform itself is out of scope.
 
 - No organization management / IAC landing-zone layer is assumed for creating projects or workspaces.
-- An assumptions is made about VCS connections that are available in your HCP Terraform organization.
-  -This demo makes use of a GitHub App Installation to connect the workspace to this repository.This affects the way in which this demo can connect to Assumptions are made about the token access you hold in the organization. Deploy this from your local environment with one of:
-  - an **Organization Token**
-  - a **Team Token** for a team with the org-level *Manage Projects* permission
-  - a **User Token** for a user who is a member of a team with the org-level *Manage Projects* permission
-- The VCS workflow requires a **GitHub App installation** in HCP Terraform connected to this repo. Its installation ID is passed via `var.github_app_installation_id` (marked sensitive).
+
+- The following assumptions are made about VCS connections that are available in your HCP Terraform organization.
+
+  - This demo can make use of a GitHub App Installation to connect the Workspace to this repository.
+
+  - When specifying the App Installation ID for the [GitHub.com (GitHub App) VCS Provider](https://developer.hashicorp.com/terraform/cloud-docs/vcs/github-app) linked to a user, the HCP Terraform token used to vend resources **must** belong to the same user.
+  
+  - Using a user GitHub App Installation with any other token will result in an error when trying to create the VCS configuration for the Workspace.
+
+- Providing no value (an empty string) for the GitHub APP Installation ID will skip configuring the VCS connection for the workspace.
+
+  - This is a valid pattern when using a **Team Token** or an **Organization Token**
+
+  - A user with sufficient privilege can manually configure the VCS connection after the workspace has been created.
+
+- Any HCP Terraform Token that is used must be linked to a User or team with the **Manage Projects** permission. 
+
+- An Organization Token can also be used.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -96,6 +115,18 @@ terraform apply plan.tfplan
 
 State is kept in a local backend (`terraform.tfstate` in this folder).
 
-# Executing the code using HCP Terraform
+# Executing the HCP Terraform Workspace
 
-After deploying the 
+After the workspace is created and connected to this repository, all execution will be performed using HCP Terraform Cloud Runners via the [UI and VCS-driven run](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/run/ui) workflow.
+
+# Cleanup
+
+When finished with this demo, the resources can be cleaned up as follows:
+
+### Destroy resources in the remote workspace
+
+Proceed to the 'Destruction and deletion' page in the settings menu for your workspace.
+
+Execute a `destroy` plan and apply to delete the resources.
+
+When complete, from your local environment execute the command below to destroy the workspace and project created for this demo.
