@@ -1,9 +1,11 @@
 output "workspace_id" {
-  value = tfe_workspace.dynamic_module_source_workspace.id
+  description = "The ID of the HCP Terraform workspace."
+  value       = tfe_workspace.dynamic_module_source_workspace.id
 }
 
 output "project_id" {
-  value = tfe_project.dynamic_module_source_project.id
+  description = "The ID of the HCP Terraform project."
+  value       = tfe_project.dynamic_module_source_project.id
 }
 
 output "project_url" {

@@ -10,7 +10,9 @@ A companion HCP Terraform workflow that can be deployed into any HCP Terraform o
  - An HCP Terraform Workspace Variable named `module_version`
    - This is a terraform variable with a non-sensitive value
    - The default value for this variable is `v0.1`
-   
+
+Outputs `project_id`, `project_url`, `workspace_id`, and `workspace_url` are provided so the created project and workspace can be linked to directly from the UI — see the Outputs table below.
+
 ## Prerequisites and Assumptions
 
 Explaining the operations of HCP Terraform itself is out of scope.
@@ -40,7 +42,7 @@ Explaining the operations of HCP Terraform itself is out of scope.
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.15.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.15 |
 | <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | ~> 0.80 |
 
 ## Providers
@@ -72,7 +74,12 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_project_id"></a> [project\_id](#output\_project\_id) | The ID of the HCP Terraform project. |
+| <a name="output_project_url"></a> [project\_url](#output\_project\_url) | Link to the HCP Terraform project in the UI. |
+| <a name="output_workspace_id"></a> [workspace\_id](#output\_workspace\_id) | The ID of the HCP Terraform workspace. |
+| <a name="output_workspace_url"></a> [workspace\_url](#output\_workspace\_url) | Link to the HCP Terraform workspace in the UI. |
 <!-- END_TF_DOCS -->
 
 ## What gets created
