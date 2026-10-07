@@ -37,3 +37,29 @@ Because `local.child_module_version` differs per folder, the root module's outpu
 - `output.tf` — single output `module_configuration` (object described above)
 - `locals.tf` — `local.child_module_version`, mapped to the folder name
 - `README.md` — terraform-docs generated reference
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+No providers.
+
+## Modules
+
+No modules.
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->

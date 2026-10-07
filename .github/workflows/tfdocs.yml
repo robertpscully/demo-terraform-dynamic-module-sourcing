@@ -1,0 +1,34 @@
+name: Terraform Docs
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'terraform/hcpt/**'
+      - 'terraform/modules/**'
+      - '.github/workflows/tfdocs.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  tfdocs:
+    name: Generate Terraform docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+
+      - name: Generate and push terraform docs
+        uses: terraform-docs/gh-actions@v1.4.1
+        with:
+          working-dir: terraform/hcpt,terraform/modules
+          output-file: README.md
+          output-method: inject
+          git-push: 'true'
+          recursive: true
+          recursive-path: .
