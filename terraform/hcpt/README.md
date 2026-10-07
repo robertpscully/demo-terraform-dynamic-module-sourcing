@@ -41,14 +41,14 @@ Explaining the operations of HCP Terraform itself is out of scope.
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.15 |
 | <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | ~> 0.80 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.80.0 |
 
 ## Modules
@@ -58,7 +58,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [tfe_project.dynamic_module_source_project](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/project) | resource |
 | [tfe_variable.module_version](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) | resource |
 | [tfe_workspace.dynamic_module_source_workspace](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace) | resource |
@@ -66,7 +66,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_github_app_installation_id"></a> [github\_app\_installation\_id](#input\_github\_app\_installation\_id) | The GitHub App installation ID in HCP Terraform linked to the GitHub account or org. | `string` | n/a | yes |
 | <a name="input_hcpt_org"></a> [hcpt\_org](#input\_hcpt\_org) | The name of the TFE organization to create the workspace in. | `string` | n/a | yes |
 | <a name="input_hcpt_vcs_branch"></a> [hcpt\_vcs\_branch](#input\_hcpt\_vcs\_branch) | The VCS branch for the Terraform Cloud workspace. | `string` | `"main"` | no |
@@ -75,7 +75,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_project_id"></a> [project\_id](#output\_project\_id) | The ID of the HCP Terraform project. |
 | <a name="output_project_url"></a> [project\_url](#output\_project\_url) | Link to the HCP Terraform project in the UI. |
 | <a name="output_workspace_id"></a> [workspace\_id](#output\_workspace\_id) | The ID of the HCP Terraform workspace. |
